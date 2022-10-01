@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <title>{{ title }}</title>
+    <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
+    <link
+            rel="stylesheet"
+            href="https://unpkg.com/@picocss/pico@latest/css/pico.min.css"
+    />
+</head>
+<body>
+<main class="container">
+    <h1>Welcome to Personal Assistant!</h1>
+    <nav
+            style="margin-bottom: 20px; border-bottom: 2px solid; padding-left: 30px"
+    >
+        <ul>
+            <li><a href="/contact/" role="button">Add contact</a></li>
+
+        </ul>
+    </nav>
+    <h4>Contacts, that I remembered:</h4>
+    {% if contacts%}
+    {% for contact in contacts%}
+    <ul>
+        <li>
+            <a style="width: 300px" href="/detail/{{contact.id}}" role="button" class="secondary"
+            >{{contact.name}}</a> <a style="margin-left: 600px; color:gray"
+                                     href="/index/{{contact.id}}" role="button" class="outline">DELETE</a>
+        </li>
+    </ul>
+    {% endfor %}
+    {% else%}
+    <h3>Not any:/</h3>
+    {%endif%}
+</main>
+</body>
+</html>
